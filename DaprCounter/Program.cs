@@ -1,9 +1,11 @@
 ﻿using Dapr.Client;
 
-const string storeName = "memory";
+const string storeName = "sqlserver-store";
 const string key = "counter";
 
 var daprClient = new DaprClientBuilder().Build();
+
+
 
 var counter = await daprClient.GetStateAsync<int>(storeName, key);
 

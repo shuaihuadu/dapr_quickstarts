@@ -1,0 +1,21 @@
+﻿apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: sqlserver-store
+spec:
+  type: state.sqlserver
+  version: v1
+  metadata:
+    - name: connectionString
+      value: server=.;user id=sa;password=1qaz@WSX
+    # - name: databaseName
+    #  value: dapr123
+    - name: tableName
+      value: dapr_state
+    - name: schema
+      value: ideatech
+# 如果连接字符串中设置了database=xxx的话，没使用databaseName参数，不管数据库存不存在，将会创建默认的dapr数据库
+# 如果连接字符串中设置了database=xxx的话，并且使用databaseName参数，将会使用指定的databaseName的数据库，如果数据库不存在则会创建名为databaseName的数据库
+# 如果连接字符串中不设置database=xxx的话，但是使用databaseName参数，将会使用指定的databaseName的数据库，如果数据库不存在则会创建名为databaseName的数据库
+# 如果连接字符串中不设置database=xxx的话，并且没使用databaseName参数的话，dapr会默认创建名为dapr的数据库
+# 参考dapr源码： https://github.com/dapr/components-contrib/blob/master/state/sqlserver/migration.go
