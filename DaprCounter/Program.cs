@@ -1,6 +1,6 @@
 ﻿using Dapr.Client;
 
-const string storeName = "sqlserver-store";
+const string storeName = "redis-store";
 const string key = "counter";
 
 var daprClient = new DaprClientBuilder().Build();
